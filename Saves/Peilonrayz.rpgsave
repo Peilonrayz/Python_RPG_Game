@@ -1,0 +1,1 @@
+{"Name": "Peilonrayz", "agi": 15, "int": 10, "Gender": "Female", "EXP": 0, "Health": 19, "Inventory": {}, "str": 15, "Slots": {"0": {"Name": "Sneaky", "agi": 5, "int": 0, "Damage": 5, "Range": [70, 110], "str": 0, "2H": false}, "1": {"Name": "Skillz", "agi": 0, "int": 0, "Damage": 5, "Range": [70, 110], "str": 5, "2H": false}}, "Gold": 0}
