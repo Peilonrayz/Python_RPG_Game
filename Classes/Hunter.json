@@ -1,0 +1,26 @@
+{
+    "EXP": 0,
+    "Gender": "Male",
+    "Gold": 0,
+    "Health": 8,
+    "Inventory": {},
+    "Name": "Pet Keeper",
+    "Slots": {
+        "0": {
+            "2H": true,
+            "Damage": 10,
+            "Name": "Where's Pet",
+            "Range": [
+                70,
+                110
+            ],
+            "Weapon": 6,
+            "agi": 10,
+            "int": 0,
+            "str": 0
+        }
+    },
+    "agi": 20,
+    "int": 10,
+    "str": 10
+}

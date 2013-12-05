@@ -1,0 +1,39 @@
+{
+    "EXP": 0,
+    "Gender": "Male",
+    "Gold": 0,
+    "Health": 8,
+    "Inventory": {},
+    "Name": "Faith",
+    "Slots": {
+        "0": {
+            "2H": false,
+            "Damage": 5,
+            "Name": "One Palm",
+            "Range": [
+                70,
+                110
+            ],
+            "Weapon": 5,
+            "agi": 5,
+            "int": 0,
+            "str": 0
+        },
+        "1": {
+            "2H": false,
+            "Damage": 5,
+            "Name": "Two Palm",
+            "Range": [
+                70,
+                110
+            ],
+            "Weapon": 5,
+            "agi": 0,
+            "int": 5,
+            "str": 0
+        }
+    },
+    "agi": 15,
+    "int": 15,
+    "str": 10
+}

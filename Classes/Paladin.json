@@ -1,0 +1,26 @@
+{
+    "EXP": 0,
+    "Gender": "Male",
+    "Gold": 0,
+    "Health": 19,
+    "Inventory": {},
+    "Name": "...",
+    "Slots": {
+        "0": {
+            "2H": false,
+            "Damage": 10,
+            "Name": "...",
+            "Range": [
+                70,
+                110
+            ],
+            "Weapon": 2,
+            "agi": 0,
+            "int": 5,
+            "str": 5
+        }
+    },
+    "agi": 10,
+    "int": 15,
+    "str": 15
+}

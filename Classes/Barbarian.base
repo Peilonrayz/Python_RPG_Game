@@ -1,0 +1,1 @@
+{"EXP": 0, "Gender": "Male", "Gold": 0, "Health": 31, "Inventory": {}, "Name": "Mr. Barbra", "Slots": {"0": {"2H": false, "Damage": 5, "Name": "Bloody Sword", "Range": [70, 110], "Weapon": 2, "agi": 0, "int": 0, "str": 5}, "1": {"2H": false, "Damage": 5, "Name": "Haxer", "Range": [70, 110], "Weapon": 0, "agi": 0, "int": 0, "str": 5}}, "agi": 10, "int": 10, "str": 20}
