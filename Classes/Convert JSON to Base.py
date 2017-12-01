@@ -3,7 +3,7 @@ import json, os
 for fileName in os.listdir(os.curdir):
     fSplit = os.path.splitext(fileName)
     if fSplit[1] == '.json':
-        print fileName
+        print(fileName)
         with open(fSplit[0]+'.base', 'w') as f1:
             with open(fSplit[0]+'.json', 'r') as f2:
                 s = json.load(f2)

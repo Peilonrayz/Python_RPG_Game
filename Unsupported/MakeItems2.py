@@ -1,22 +1,19 @@
-import CharClasses as Class
-import ItemClasses as Item
-import FightClasses as Fight
-import Tkinter
+import tkinter
 
 import json
 
 class EntrySection(object):
     def __init__(self, root, data):
-        self.Text = Tkinter.StringVar()
-        self.Label = Tkinter.Label(root, textvariable=self.Text)
+        self.Text = tkinter.StringVar()
+        self.Label = tkinter.Label(root, textvariable=self.Text)
         self.Text.set(data["text"]["text"])
-        self.Label.pack(side = Tkinter.LEFT, expand=True)
+        self.Label.pack(side = tkinter.LEFT, expand=True)
         self.Label.place(x = data["text"]["x"], y = data["y"], height = data["text"]["height"])
         self.Label.visible = True
-        self.Box = Tkinter.Entry(root, bd = 4)
+        self.Box = tkinter.Entry(root, bd = 4)
         self.Box.place(x = data["box"]["x"], y = data["y"], width = data["box"]["width"], height = data["box"]["height"])
         self.Box.visible = True
-        self.Error = Tkinter.Entry(root, bd = 4)
+        self.Error = tkinter.Entry(root, bd = 4)
         self.Error.place(x = data["box"]["x"]+data["box"]["width"], y = data["y"], width = 100, height = data["box"]["height"])
         self.Error.visible = True
 
@@ -45,10 +42,10 @@ class EntrySection(object):
 def DoubleEntrySection(EntrySection):
     def __init__(self, root, data):
         super(DoubleEntrySection, self).__init__(root, data)
-        self.RandomBox = Tkinter.Entry(root, bd = 4)
+        self.RandomBox = tkinter.Entry(root, bd = 4)
         self.RandomBox.place(x = data["box"]["x"], y = data["y"], width = data["box"]["width"], height = data["box"]["height"])
         self.RandomBox.visible = True
-        self.Error2 = Tkinter.Entry(root, bd = 4)
+        self.Error2 = tkinter.Entry(root, bd = 4)
         self.Error2.place(x = data["box"]["x"]+data["box"]["width"], y = data["y"], width = 100, height = data["box"]["height"])
         self.Error2.visible = True
         
@@ -57,7 +54,7 @@ def DoubleEntrySection(EntrySection):
 
 class Button(object):
     def __init__(self, root, data):
-        self.Button = Tkinter.Button(root, text = data["text"], command = data["func"])
+        self.Button = tkinter.Button(root, text = data["text"], command = data["func"])
         self.Button.place(x = data["x"], y = data["y"], width = 100, height = 25)
         self.Button.visible = True
     def Toggle(self):
@@ -94,7 +91,7 @@ lst = ["axe", "mace", "sword", "spear", "dagger", "claw", "bow", "crossbow", "gu
 def IsWeapon(string):
     s = string.lower()
     s = int(string) if IsInt(string) else string
-    for i in xrange(len(lst)):
+    for i in range(len(lst)):
         if s == i or s == lst[i]:
             return i, True
     return -1, False
@@ -112,7 +109,7 @@ class DisplayMain(object):
         self.Int = EntrySection(self.root, {"text":{"x":0, "text":"Intellect", "height":25}, "box":{"x":100, "width":100, "height":25}, "y":75})
         self.Range = EntrySection(self.root, {"text":{"x":0, "text":"Damage Range", "height":25}, "box":{"x":100, "width":50, "height":25}, "y":100})
         self.Range.Error.place(x = 200, y = 100, width = 100, height = 25)
-        self.Range.Box2 = Tkinter.Entry(self.root, bd = 4)
+        self.Range.Box2 = tkinter.Entry(self.root, bd = 4)
         self.Range.Box2.place(x = 150, y = 100, width = 50, height = 25)
         self.Range.Box2.visible = True
 
@@ -131,13 +128,14 @@ class DisplayMain(object):
     def MakeHandle(self):
         data = self.MakeItem()
         if data != False:
-            print data
+            print(data)
             try:
-                print self.path+data["Name"]
+                print(self.path+data["Name"])
                 with open(self.path+data["Name"]+"."+self.type, 'w') as f:
                     f.write(json.dumps(data, sort_keys=True, separators=(',',':')))
                     self.Clean()
-            except:print "Error!!! Nub!"
+            except:
+                print("Error!!! Nub!")
 
     def MakeItem(self):
         boolean = True
@@ -278,7 +276,7 @@ class DisplayItem(DisplayMain):
 
 class Display(object):
     def __init__(self):
-        self.root = Tkinter.Tk()
+        self.root = tkinter.Tk()
 
         self.Item = DisplayItem(self.root, self)
         self.Weapon = DisplayWeapon(self.root, self)

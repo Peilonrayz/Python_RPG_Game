@@ -1,7 +1,8 @@
 import json
 import random
 
-class Item(object):
+
+class Item:
     def __init__(self, data):
         self.given = False
         self.strength = data['str']
@@ -9,45 +10,54 @@ class Item(object):
         self.intellect = data['int']
         self.name = data['Name']
         self.range = data['Range']
-        self.twoH = data['2H']
+        self.two_h = data['2H']
+        self.primary_attribute = 'strength'
+
     def __type__(self):
         return self.type
+
     def __str__(self):
-        return json.dumps({'str': self.strength, 'agi': self.agility, 'int': self.intellect, 'Name': self.name, 'Range': self.range, '2H': self.twoH, self.type[0]: self.type[1]})
+        return json.dumps({'str': self.strength, 'agi': self.agility, 'int': self.intellect, 'Name': self.name, 'Range': self.range, '2H': self.two_h, self.type[0]: self.type[1]})
+
     def get(self):
-        return {'str': self.strength, 'agi': self.agility, 'int': self.intellect, 'Name': self.name, 'Range': self.range, '2H': self.twoH}
+        return {'str': self.strength, 'agi': self.agility, 'int': self.intellect, 'Name': self.name, 'Range': self.range, '2H': self.two_h}
 
-    def AddStats(self, enitity):
-        enitity.strength += self.strength
-        enitity.agility += self.agility
-        enitity.intellect += self.intellect
+    def add_stats(self, entity):
+        entity.strength += self.strength
+        entity.agility += self.agility
+        entity.intellect += self.intellect
 
-    def RemoveStats(self, enitity):
-        enitity.strength -= self.strength
-        enitity.agility -= self.agility
-        enitity.intellect -= self.intellect
+    def remove_stats(self, entity):
+        entity.strength -= self.strength
+        entity.agility -= self.agility
+        entity.intellect -= self.intellect
 
-    def Equip(self, other):
-        if other != None:
-            self.AddStats(other)
+    def equip(self, other):
+        if other is not None:
+            self.add_stats(other)
             self.given = True
+
 
 class Armour(Item):
     def __init__(self, data):
         super(Armour, self).__init__(data)
         self.defence = data['Defence']
         self.type = ('Armour', data['Armour'])
+
     def __str__(self):
         data = super(Armour, self).get()
         data.update({'Defence': self.defence})
         return json.dumps(data)
+
     def get(self):
         data = super(Armour, self).get()
         data.update({'Defence': self.defence})
         return data
-    def Protection(self):
+
+    def protection(self):
         return (random.randrange(self.range[0], self.range[1]+1, 1)*self.defence)/100.
-    
+
+
 class Weapon(Item):
     def __init__(self, data):
         super(Weapon, self).__init__(data)
@@ -59,32 +69,33 @@ class Weapon(Item):
         data = super(Weapon, self).get()
         data.update({'Damage': self.damage})
         return json.dumps(data)
+
     def get(self):
         data = super(Weapon, self).get()
         data.update({'Damage': self.damage})
         return data
 
-    def Damage(self, s):
-        if s == 1 and self.twoH:
+    def damage(self, s):
+        if s == 1 and self.two_h:
             return 0
         return (random.randrange(self.range[0], self.range[1]+1, 1)*self.damage)/100.
 
-def Make(data):
-    t = type(data)
-    if t == dict:
-        if 'Armour' in list(data):
-            return Armour(data)
-        elif 'Weapon' in list(data):
-            return Weapon(data)
+
+def make(data):
+    if 'Armour' in data:
+        return Armour(data)
+    elif 'Weapon' in data:
+        return Weapon(data)
     return None
 
+
 if __name__ == '__main__':
-    h = Make({'Armour': 2, 'agi': 5, 'int': 0, 'Defence': 10, 'Range': [70, 110], 'str': 5, '2H': False, 'Name': 'OrkHealm'})
-    print h
-    print type(h)
-    print h.Protection()
-    j = Make({'Armour': 2, 'agi': 5, 'int': 0, 'Defence': 10, 'Range': [70, 110], 'str': 5, '2H': False, 'Name': 'OrkHealm'})
-    k = Make({'Armour': 2, 'agi': 5, 'int': 0, 'Defence': 10, 'Range': [70, 110], 'str': 5, '2H': False, 'Name': 'OrkHealm'})
-    print h == j
-    print j == k
-    print k == h
+    h = make({'Armour': 2, 'agi': 5, 'int': 0, 'Defence': 10, 'Range': [70, 110], 'str': 5, '2H': False, 'Name': 'OrkHealm'})
+    print(h)
+    print(type(h))
+    print(h.protection())
+    j = make({'Armour': 2, 'agi': 5, 'int': 0, 'Defence': 10, 'Range': [70, 110], 'str': 5, '2H': False, 'Name': 'OrkHealm'})
+    k = make({'Armour': 2, 'agi': 5, 'int': 0, 'Defence': 10, 'Range': [70, 110], 'str': 5, '2H': False, 'Name': 'OrkHealm'})
+    print(h == j)
+    print(j == k)
+    print(k == h)
