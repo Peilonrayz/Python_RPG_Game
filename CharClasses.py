@@ -12,24 +12,29 @@ def r_print(string, n):
     return string+' '*(n-len(string))
 
 
-class EntityBase:
-    def __init__(self, data):
-        self.inventory = []
-        self.equipped = []
-        self.baseStrength = data['str']
-        self.baseAgility = data['agi']
-        self.baseIntellect = data['int']
-        self.strength = data['str']
-        self.agility = data['agi']
-        self.intellect = data['int']
+class Inventory(list):
+    pass
 
-        self.gender = data['Gender']
-        self.name = data['Name']
+
+class EntityBase:
+    baseStrength: int = 'str'
+    baseAgility: int = 'agi'
+    baseIntellect: int = 'int'
+    strength: int = 'str'
+    agility: int = 'agi'
+    intellect: int = 'int'
+    gender: str = 'Gender'
+    name: str = 'Name'
+
+    def __init__(self, data):
+        self.inventory = Inventory()
+        self.equipped = []
+
         self.slots = {}
         for i in data['Slots']:
             j = Item.make(data['Slots'][i])
             self.slots[int(i)] = j
-        
+
         self.max_health = 0
         self.health_regen = 0
         self.update_hp()
@@ -48,11 +53,11 @@ class EntityBase:
 
     def take_damage(self, damage):
         try:
-            if type(self.slots[1]) == Item.Sheild:
+            if self.slots[1].type == Item.Sheild:
                 damage -= self.slots[1].protection()
         except:
             pass
-        for i in range(2, 14, 1):#Armour slots
+        for i in range(2, 14, 1):  #Armour slots
             try:
                 damage -= self.slots[i].protection()
             except:
@@ -79,11 +84,11 @@ class EntityBase:
         try:
             dmg += self.additional_damage(self.slots[0], self.slots[0].damage(0))
         except:
-            pass#print 'Error on slot 0'
+            pass  #print 'Error on slot 0'
         try:
             dmg += self.additional_damage(self.slots[1], self.slots[1].damage(1))
         except:
-            pass#print 'Error on slot 1'
+            pass  #print 'Error on slot 1'
         dmg = int(dmg * (self.health / float(self.max_health)))
         other.take_damage(dmg)
 
@@ -104,7 +109,7 @@ class EntityBase:
         if self.health > self.max_health:
             self.health = self.max_health
 
-    def equip_weapon(self, item, slot=True):#Slot: True == 0, False == 1 aka True = RHand, False = LHand
+    def equip_weapon(self, item, slot=True):  #Slot: True == 0, False == 1 aka True = RHand, False = LHand
         if item.twoH:
             changed = 0
             if self.equipped[0] is not None:
@@ -158,17 +163,18 @@ class EntityBase:
 
 
 class Player(EntityBase):
+    gold: int = 'Gold'
+    exp: int = 'EXP'
+    health: int = 'Health'
+
     def __init__(self, data):
         super(Player, self).__init__(data)
-        
-        self.gold = data['Gold']
+
         for i in data['Inventory']:
             self.inventory[int(i)] = Item.make(data['Inventory'][i])
-        
-        self.exp = data['EXP']
+
         self.level = 1
         self.level += self.get_level()
-        self.health = data['Health']
 
     def __str__(self):
         data = super(Player, self).get()
@@ -214,6 +220,8 @@ class Player(EntityBase):
 
 
 class Mobile(EntityBase):
+    experience: int = 'Experience'
+
     def __init__(self, data):
         super(Mobile, self).__init__(data)
         self.experience = data['Experience']
