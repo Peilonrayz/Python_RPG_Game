@@ -2,6 +2,7 @@ import random
 import math as m
 import json
 import ItemClasses as Item
+from .mixin import Mixin
 
 
 def s_print(string, n):
@@ -14,6 +15,28 @@ def r_print(string, n):
 
 class Inventory(list):
     pass
+
+
+class LevelMixin(Mixin):
+    exp: int = 'exp'
+
+    def __init__(self):
+        self._exp = 0
+        self._level = 0
+
+    @property
+    def exp(self):
+        return self._exp
+
+    @exp.setter
+    def exp(self, exp):
+        self._exp = exp
+        self._level = 1
+
+    @property
+    def level(self):
+        return self._level
+
 
 
 class EntityBase:
