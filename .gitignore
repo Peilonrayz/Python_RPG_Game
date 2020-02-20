@@ -3,7 +3,7 @@
 .mypy_cache/
 .coverage
 .vscode/
-Saves/
+.nox/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

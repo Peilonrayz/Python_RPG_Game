@@ -1,0 +1,1 @@
+{"str": 20, "agi": 10, "int": 10, "Gender": "Male", "Name": "ABC", "Slots": {"0": {"str": 5, "agi": 0, "int": 0, "Name": "Bloody Sword", "Range": [70, 110], "2H": false, "Damage": 5}, "1": {"str": 5, "agi": 0, "int": 0, "Name": "Haxer", "Range": [70, 110], "2H": false, "Damage": 5}}, "Health": 31, "Gold": 0, "Inventory": {}, "EXP": 0}
