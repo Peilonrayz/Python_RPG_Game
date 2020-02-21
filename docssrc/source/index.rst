@@ -1,4 +1,4 @@
-Welcome to python_rpg_game's documentation!
+Welcome to Python RPG Game's documentation!
 ===========================================
 
 .. toctree::

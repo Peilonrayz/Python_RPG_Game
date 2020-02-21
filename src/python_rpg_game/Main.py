@@ -12,14 +12,14 @@ class Menu:
 
     @staticmethod
     def load_player(name):
-        with open(f'Saves\\{name}.rpgsave', "w") as f:
+        with open(f"Saves\\{name}.rpgsave", "w") as f:
             return Menu(Class.Player(f.read()))
 
     def save(self):
-        with open(f'Saves\\{self.player.name}.rpgsave', "w") as f:
+        with open(f"Saves\\{self.player.name}.rpgsave", "w") as f:
             f.write(str(self.player))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     menu = Menu.new_game()
     menu.save()

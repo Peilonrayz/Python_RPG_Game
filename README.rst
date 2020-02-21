@@ -1,4 +1,4 @@
-python_rpg_game
+Python RPG Game
 ===============
 
 .. image:: https://travis-ci.com/Peilonrayz/python_rpg_game.svg?branch=master
@@ -39,4 +39,4 @@ To run all tests run ``nox``. No venv is needed; nox makes all of them for us.
 License
 -------
 
-python_rpg_game is available under the MIT license.
+Python RPG Game is available under the MIT license.

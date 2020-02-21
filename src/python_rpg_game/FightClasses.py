@@ -1,13 +1,15 @@
 class Fight(object):
     def __init__(self, good, bad):
         print("FIGHT!!!")
-        print(", ".join((i.name for i in good))+" v "+", ".join((i.name for i in bad)))
+        print(
+            ", ".join((i.name for i in good)) + " v " + ", ".join((i.name for i in bad))
+        )
         print()
         self.gChars = good
         self.bChars = bad
         i = 0
-        while len(self.gChars)!=0 and len(self.bChars)!=0:
-            print("TURN %i!!!"%i)
+        while len(self.gChars) != 0 and len(self.bChars) != 0:
+            print("TURN %i!!!" % i)
             self.turn()
             i += 1
 

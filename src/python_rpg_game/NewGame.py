@@ -1,6 +1,7 @@
-import CharClasses as Class
 import json
 import os
+
+import CharClasses as Class
 
 
 def int_(string):
@@ -27,16 +28,16 @@ def loop(question, functions):
 
 
 def get_hero_choice():
-    for fileName in os.listdir('classes\\'):
+    for fileName in os.listdir("classes\\"):
         fSplit = os.path.splitext(fileName)
-        if fSplit[1] == '.base':
+        if fSplit[1] == ".base":
             yield fSplit[0]
 
 
 def get_saves():
-    for fileName in os.listdir('Saves\\'):
+    for fileName in os.listdir("Saves\\"):
         fSplit = os.path.splitext(fileName)
-        if fSplit[1] == '.rpgsave':
+        if fSplit[1] == ".rpgsave":
             yield fSplit[0]
 
 
@@ -48,26 +49,33 @@ def select_hero():
     def a(List):
         def b(string):
             return string in List
+
         return b
-    choice = loop('What do you want to be?\n', [int_, a([str(i) for i in range(len(c))])])
+
+    choice = loop(
+        "What do you want to be?\n", [int_, a([str(i) for i in range(len(c))])]
+    )
     saves = list(get_saves())
     while True:
-        name = loop('What is your name?\n', [])
+        name = loop("What is your name?\n", [])
         if name in saves:
-            over = loop('This player allready exists, do you wish to overide it?\n', [a(['y', 'yes', 'n', 'no'])])
-            if over in ['yes', 'y']:
+            over = loop(
+                "This player allready exists, do you wish to overide it?\n",
+                [a(["y", "yes", "n", "no"])],
+            )
+            if over in ["yes", "y"]:
                 break
             else:
                 pass
         else:
             break
-    gender = loop('Are you male or female?\n', [a(['m', 'male', 'f', 'female'])])
-    if gender in ['m', 'male']:
-        gender = 'Male'
+    gender = loop("Are you male or female?\n", [a(["m", "male", "f", "female"])])
+    if gender in ["m", "male"]:
+        gender = "Male"
     else:
-        gender = 'Female'
-    with open('classes\\'+c[int(choice)]+'.base', 'r') as f:
+        gender = "Female"
+    with open("classes\\" + c[int(choice)] + ".base", "r") as f:
         s = json.load(f)
-        s['Name'] = name
-        s['Gender'] = gender
+        s["Name"] = name
+        s["Gender"] = gender
         return Class.Player(s)
